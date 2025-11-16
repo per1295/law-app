@@ -1,0 +1,26 @@
+@use "/src/variables.scss" as v;
+@use "/src/mixins.scss" as m;
+
+.theory_label {
+    margin: .8rem 0;
+    color: v.$white;
+    font-family: Inter;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0%;
+    text-align: center;
+    word-break: break-all;
+
+    @include m.theme_start_dark();
+
+    @include m.tablet() {
+        max-width: calc(80% - 100px);
+    }
+}
+
+.theory_label_light {
+    color: v.$black;
+
+    @include m.theme_to_light();
+}

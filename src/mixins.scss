@@ -1,0 +1,43 @@
+@mixin deskboard($size) {
+    $double-size: $size * 2;
+    
+    background-size: 
+        $double-size $double-size,
+        $double-size $double-size,
+        $double-size $double-size,
+        $double-size $double-size;
+    
+    background-position: 
+        0 0,
+        0 $size,
+        $size (-$size),
+        -$size 0;
+}
+
+@mixin theme_to_light() {
+    transition-timing-function: ease-out;
+}
+
+@mixin theme_start_dark() {
+    transition-property: background-color, background-image, color, filter, opacity, border;
+    transition-duration: .5s;
+    transition-timing-function: ease-in;
+}
+
+@mixin mobile() {
+    @media screen and (min-width: 576px) {
+        @content;
+    }
+}
+
+@mixin tablet() {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin desktop() {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}

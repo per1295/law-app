@@ -1,0 +1,37 @@
+@use "/src/variables.scss" as v;
+@use "/src/mixins.scss" as m;
+
+.statement {
+    position: absolute;
+    display: block;
+    border: 8px solid v.$white;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 60%;
+    will-change: top, left;
+
+    background-color: v.$black;
+    color: v.$white;
+    font-family: Inter;
+    font-size: .8rem;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0%;
+    text-align: center;
+
+    overflow: hidden;
+
+    @include m.theme_start_dark();
+
+    @include m.tablet() {
+        max-width: 600px;
+    }
+}
+
+.statement_light {
+    background-color: v.$white;
+    color: v.$black;
+    border: 8px solid v.$gray;
+
+    @include m.theme_to_light();
+}

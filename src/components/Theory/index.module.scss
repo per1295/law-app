@@ -1,0 +1,31 @@
+@use "/src/variables.scss" as v;
+@use "/src/mixins.scss" as m;
+
+.theory {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 45%;
+    background-color: v.$black;
+    color: v.$white;
+    padding: 1rem .2rem;
+
+    @include m.theme_start_dark();
+
+    @include m.tablet() {
+        max-width: 30%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+    }
+}
+
+.theory_light {
+    background-color: v.$gray;
+    color: v.$black;
+
+    @include m.theme_to_light();
+}
