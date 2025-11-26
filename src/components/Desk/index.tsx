@@ -44,6 +44,33 @@ export default function Desk({setShownScore}: IProps) {
         }
     });
 
+    // Сохранение прогресса
+    useEffect(() => {
+        const { theory, index } = nowTheory;
+
+        if ( index == 6 ) {
+            localStorage.setItem("theory", "Theological");
+            localStorage.setItem("theory_index", "0");
+        } else if ( theory != "Theological" || index != 0 ) {
+            localStorage.setItem("theory", nowTheory.theory);
+            localStorage.setItem("theory_index", `${nowTheory.index}`);
+        }
+    }, [ nowTheory ]);
+
+    // Чтение из Localstorage
+    useEffect(() => {
+        const theory = localStorage.getItem("theory") as Theory ?? "Theological";
+        const theory_index = +(localStorage.getItem("theory_index") ?? 0);
+        console.log(theory, theory_index);
+
+        if ( theory && theory_index ) {
+            setNowTheory({
+                theory,
+                index: theory_index
+            });
+        }
+    }, []);
+
     // Подсчет возможного количества очков
     useEffect(() => {
         const desk = desk_ref.current as HTMLElement;
@@ -51,7 +78,7 @@ export default function Desk({setShownScore}: IProps) {
         const theory_literatures = document.querySelector("[data-literature-container]") as HTMLDivElement;
         const theory_literatures_items = theory_literatures?.children as HTMLCollectionOf<HTMLDivElement>;
 
-        const theory = nowTheory.theory.toLowerCase();
+        const theory = nowTheory.theory?.toLowerCase();
 
         for ( const theory_content of theories_contents ) {
             for ( const statement of theory_content.children as HTMLCollectionOf<HTMLDivElement> ) {
