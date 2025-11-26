@@ -5,9 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Теории происхождения государства</title>
     <link rel="icon" type="image/png" href="/chess-board.png">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('Service Worker зарегистрирован: ', registration.scope);
+            
+            // Проверяем наличие обновлений
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              console.log('Обнаружено обновление Service Worker');
+              
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('Новая версия доступна!');
+                  // Здесь можно показать уведомление пользователю
+                }
+              });
+            });
+          })
+          .catch(function(error) {
+            console.log('Ошибка регистрации Service Worker: ', error);
+          });
+      });
+
+      // Обработка обновления Service Worker
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+    </script>
   </body>
 </html>

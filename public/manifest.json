@@ -1,0 +1,16 @@
+{
+  "name": "Теории происхождения государства",
+  "short_name": "Государство",
+  "description": "Теории происхождения государства",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/chess-board.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}
