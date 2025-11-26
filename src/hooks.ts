@@ -162,16 +162,16 @@ export function useDragAndDrop<ElemType extends HTMLElement>(elem_ref: RefObject
             const theory_container = elem.closest("div[data-container][data-theory]") as HTMLDivElement | null;
 
             if ( theory_container ) {
-                setTimeout(() => {
+                // setTimeout(() => {
                     setCSSStyles(statement, {
-                        position: "relative",
+                        position: "static",
                         // width: "80%",
                         // height: "200px",
                         top: "0px",
                         left: "0px",
                         wordBreak: "break-all"
                     });
-                });
+                // });
 
                 theory_container.append(statement);
             }
