@@ -26,6 +26,10 @@
     @include m.tablet() {
         max-width: 600px;
     }
+
+    @include m.desktop() {
+        font-size: 2rem;
+    }
 }
 
 .statement_light {

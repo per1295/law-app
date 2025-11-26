@@ -3,11 +3,14 @@
 
 .theory {
     position: relative;
+    width: 74dvw;
+
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 45%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+
     background-color: v.$black;
     color: v.$white;
     padding: 1rem .2rem;
@@ -15,11 +18,15 @@
     @include m.theme_start_dark();
 
     @include m.tablet() {
-        max-width: 30%;
+        max-width: 60%;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
         gap: 1.2rem;
+    }
+
+    @include m.desktop() {
+        max-width: 80%;
     }
 }
 

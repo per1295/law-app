@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
 
-import { ThemeContext } from '../../contexts';
+import { ThemeContext, NowTheory } from '../../contexts';
 import { useContext, useRef, useEffect } from 'react';
 import type { TransitionEventHandler } from 'react';
 
@@ -11,24 +11,17 @@ const CHESS_PIECES = [
     "Pawn", "Queen", "Bishop", "Rook", "Knight", "King"
 ];
 const THEORY_NAMES = [
-    "Договорная",
     "Теологическая",
-    "Психологическая",
-    "Материалистическая",
+    "Патриархальная",
     "Насилия",
-    "Патриархальная"
-];
-const THEORIES_VALUES = [
-    "Contractual",
-    "Theological",
-    "Psychological",
-    "Materialistic",
-    "Violence",
-    "Patriarchal"
+    "Психологическая",
+    "Договорная",
+    "Материалистическая",
 ];
 
 export default function Theories() {
     const theme = useContext(ThemeContext);
+    const { index: theoryIndex, theory } = useContext(NowTheory);
 
     const pieces = CHESS_PIECES.map(piece => {
         return `${piece}_${theme.value === "light" ? "Black" : "White"}`
@@ -55,15 +48,14 @@ export default function Theories() {
 
     return(
         <div ref={theories_ref} className={styles.theories}>
-            {pieces.map(
-                (piece, index) => {
-                    return(
-                        <Theory key={index} theory_name={THEORY_NAMES[index]} theory_value={THEORIES_VALUES[index]}>
-                            <Image src={`/${piece}.png`} alt={piece} className={styles.piece} onTransitionEnd={onTransitionEnd}/>
-                        </Theory>
-                    )
-                }
-            )}
+            <Theory theory_name={THEORY_NAMES[theoryIndex]} theory_value={theory}>
+                <Image
+                    src={`/${pieces[theoryIndex]}.png`}
+                    alt={pieces[theoryIndex]}
+                    className={styles.piece}
+                    onTransitionEnd={onTransitionEnd}
+                />
+            </Theory>
         </div>
     )
 }

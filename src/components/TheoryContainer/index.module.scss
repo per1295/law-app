@@ -5,7 +5,8 @@
     background-color: v.$gray;
     border-radius: 5px;
     width: 80%;
-    min-height: 80px;
+    min-width: 80%;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +14,18 @@
     padding: 1.2rem 0;
 
     @include m.theme_start_dark();
+
+    @include m.tablet() {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    @include m.desktop() {
+        margin-top: 2rem;
+        min-height: 300px;
+    }
 }
 
 .theory_container_light {

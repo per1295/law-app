@@ -5,10 +5,12 @@
     margin-top: 1.2rem;
     max-width: 100vw;
     min-width: 100vw;
-    min-height: 500px;
+    min-height: 300px;
+    max-height: 500px;
 
     @include m.tablet() {
-        min-height: 800px;
+        min-height: 400px;
+        margin-top: 2rem;
     }
 
     @supports (max-width: 100dvw) {

@@ -1,0 +1,18 @@
+@use "/src/variables.scss" as v;
+
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    z-index: 9999999;
+
+    .progress_bar {
+        height: 100%;
+        background-color: v.$success;
+        will-change: width;
+        transition-property: width;
+        transition-duration: .5s;
+    }
+}

@@ -15,9 +15,10 @@ interface IProps {
     years: string;
     theory: Theory;
     zIndex: RefObject<number>;
+    id: string;
 }
 
-export default function Person({ image, name, years, theory, zIndex }: IProps) {
+export default function Person({ image, name, years, theory, zIndex, id }: IProps) {
     const theme = useContext(ThemeContext);
     const person_ref = useRef<HTMLDivElement>(null);
     const info_className = `${styles.person_inf} ${theme.value === "dark" || styles.person_inf_light}`;
@@ -25,7 +26,12 @@ export default function Person({ image, name, years, theory, zIndex }: IProps) {
     useDragAndDrop(person_ref, zIndex);
 
     return(
-        <div ref={person_ref} data-theory={theory} className={styles.person}>
+        <div
+            ref={person_ref}
+            data-theory={theory}
+            data-id={id}
+            className={styles.person}
+        >
             <Image src={`/${image}.png`} alt={image} className={styles.pic} />
             <div className={info_className}>
                 <span>{name}</span>

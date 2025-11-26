@@ -14,7 +14,7 @@ export interface IGameTheme {
 export type Theory = "Contractual" | "Theological" | "Psychological" | "Materialistic" | "Violence" | "Patriarchal";
 
 export interface IScore {
-    total: number;
+    total: number | null;
     access: number | null;
 }
 
@@ -26,4 +26,14 @@ export interface IScoreCtx {
 export type WindowSizeType = "mobile_tiny" | "mobile" | "tablet" | "desktop";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyFunc= (...args: any[]) => any;
+export type AnyFunc = (...args: any[]) => any;
+
+export interface INowTheory {
+    theory: Theory;
+    index: number;
+    setValue: Dispatch<SetStateAction<Omit<INowTheory, "setValue">>>;
+}
+
+export type AnyObject = {
+    [index: string]: unknown;
+}

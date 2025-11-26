@@ -1,0 +1,40 @@
+@use "/src/mixins.scss" as m;
+@use "/src/variables.scss" as v;
+
+.literature {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    color: v.$white;
+    background-color: v.$black;
+    font-family: Inter;
+    font-size: .8rem;
+    font-weight: bold;
+    text-align: center;
+    word-break: break-all;
+    border-radius: 10px;;
+    border: 3px solid v.$white;
+    padding: 0.8rem;
+
+    min-width: 170px;
+    width: 170px;
+
+    @include m.theme_start_dark();
+
+    @include m.tablet() {
+        width: 300px;
+    }
+
+    @include m.desktop() {
+        font-size: 2rem;
+        width: auto;
+    }
+}
+
+.literature_light {
+    color: v.$black;
+    background-color: v.$white;
+    border: 3px solid v.$black;
+
+    @include m.theme_to_light();
+}

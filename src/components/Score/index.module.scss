@@ -12,7 +12,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 9999;
+    z-index: 99999999;
 
     @include m.deskboard(v.$desk_cell_mobile_tiny);
 }
@@ -43,16 +43,6 @@
     
 }
 
-.score_fail {
-    background-color: v.$fail_ceil_white;
-    background-image: 
-        // Основной шахматный узор
-        linear-gradient(45deg, v.$fail_ceil_black 25%, transparent 25%),
-        linear-gradient(-45deg, v.$fail_ceil_black 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, v.$fail_ceil_black 75%),
-        linear-gradient(-45deg, transparent 75%, v.$fail_ceil_black 75%);
-}
-
 .score_statistics {
     display: flex;
     flex-direction: column;
@@ -78,10 +68,6 @@
 
 .score_statistics_success {
     border: 20px solid v.$success;
-}
-
-.score_statistics_fail {
-    border: 20px solid v.$fail;
 }
 
 .score_statistics_img {
@@ -111,27 +97,6 @@
 
 .score_success_color {
     color: v.$success;
-}
-
-.score_fail_color {
-    color: v.$fail;
-}
-
-.score_completed {
-    font-family: Inter;
-    font-size: 1rem;
-    font-weight: 400;
-    letter-spacing: 0%;
-    text-align: center;
-    word-break: break-all;
-
-    @include m.mobile() {
-        font-size: 1.4rem;
-    }
-
-    @include m.desktop() {
-        font-size: 2.5rem;
-    }
 }
 
 .score_tip {
@@ -164,11 +129,6 @@
     color: v.$white;
 }
 
-.score_tip_fail {
-    background-color: v.$fail;
-    color: v.$white;
-}
-
 .score_tip_button {
     width: 80%;
     color: inherit;
@@ -189,11 +149,5 @@
 .score_tip_button_success {
     &:hover {
         color: v.$success;
-    }
-}
-
-.score_tip_button_fail {
-    &:hover {
-        color: v.$fail;
     }
 }

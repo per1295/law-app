@@ -17,6 +17,10 @@
     @include m.tablet() {
         max-width: calc(80% - 100px);
     }
+
+    @include m.desktop() {
+        font-size: 3rem;
+    }
 }
 
 .theory_label_light {

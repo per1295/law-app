@@ -46,3 +46,14 @@
 
     @include m.theme_to_light();
 }
+
+.deskboard_theories_contents {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.theory_section_fail {
+    border: 5px solid v.$fail !important;
+}

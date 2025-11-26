@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { AnyFunc } from "./types";
+import type { AnyFunc, AnyObject } from "./types";
 
 export function shuffle<ItemType>(list: ItemType[]): ItemType[] {
     const copy = [...list];
@@ -43,4 +43,24 @@ export function debounce(func: AnyFunc, wait: number): AnyFunc {
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+export function filterByField<ArrayItemType>(arr: ArrayItemType[], field: string, value?: unknown) {
+    return(
+        arr.filter(item => {
+            if ( value === undefined ) {
+                return field in (item as object);
+            } else {
+                return (item as AnyObject)?.[field] === value;
+            }
+        })
+    )
+}
+
+export function filterWithout<ArrayItemType>(arr: ArrayItemType[], field: string, value: unknown) {
+    return(
+        arr.filter(item => {
+            return (item as AnyObject)?.[field] !== value;
+        })
+    )
 }

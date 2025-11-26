@@ -34,10 +34,17 @@ export function useDragAndDrop<ElemType extends HTMLElement>(elem_ref: RefObject
                 left: startPositionalCoords.current.x + "px"
             });
             removeCSSStyles(statement, ["width", "height", "wordBreak", "fontSize"]);
+            statement.dataset.wasSelected = ""
 
-            const statements_container = document.querySelector("[data-statements-container]") as HTMLDivElement;
-            statements_container.append(statement);
+            let container: HTMLDivElement;
 
+            if ( statement.dataset.literature ) {
+                container = document.querySelector("[data-literature-container]") as HTMLDivElement;
+            } else {
+                container = document.querySelector("[data-statements-container]") as HTMLDivElement;
+            }
+
+            container.append(statement);
             return;
         }
 
@@ -158,7 +165,7 @@ export function useDragAndDrop<ElemType extends HTMLElement>(elem_ref: RefObject
                 setTimeout(() => {
                     setCSSStyles(statement, {
                         position: "relative",
-                        width: "80%",
+                        // width: "80%",
                         // height: "200px",
                         top: "0px",
                         left: "0px",
@@ -202,8 +209,9 @@ export function useDragAndDrop<ElemType extends HTMLElement>(elem_ref: RefObject
 
         if (statement) {
             const parent_container = statement.parentElement as HTMLDivElement;
-            const x = random(parent_container.clientWidth / 3) + statement.offsetWidth / 10;
-            const y = random(parent_container.clientHeight / 2) + statement.offsetHeight / 2;
+            const x = random(parent_container.clientWidth / 2 - statement.offsetWidth / 2) + document.documentElement.clientWidth / 25;
+            const y = random(parent_container.clientHeight / 2 - statement.offsetHeight / 2)
+
             startPositionalCoords.current = {x, y};
 
             setCSSStyles(statement, {
@@ -212,4 +220,19 @@ export function useDragAndDrop<ElemType extends HTMLElement>(elem_ref: RefObject
             });
         }
     }, [elem_ref]);
+}
+
+const max_random = random.bind(null, 0, 1000);
+
+export function useRandomID<DependType>(depends: DependType[], conditionFunc: () => unknown) {
+    const [ randomID, setRandomID ] = useState(0);
+
+    useEffect(() => {
+        if ( conditionFunc() ) {
+            setRandomID(max_random);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ ...depends ]);
+
+    return randomID;
 }
